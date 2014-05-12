@@ -1,5 +1,4 @@
 # Random octodex
-
 A simple node project to randomize display of the github octodexes.
 
 ##Sample
