@@ -12,4 +12,4 @@ app.get('/random', function(req, res) {
     res.end();
 
   });
-}).listen(5000);
+}).listen(Number(process.env.PORT || 5000));
