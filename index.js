@@ -8,7 +8,16 @@ app.get('/random', function(req, res) {
       res.end();
       return;
     }
-    res.writeHead(302, {'Location' : url});
+
+    var requestUrl = url.replace('http://', 'https://') + (url.indexOf('?') > 0 ? '&' : '?') + Math.random();
+
+    res.writeHead(302, {
+      'Cache-Control' : 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Location' : requestUrl
+    });
+
     res.end();
 
   }, true);
