@@ -3,13 +3,22 @@
   "version": "0.0.1",
   "description": "Display random octodex image",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Eduardo Bohrer",
+  "homepage": "https://github.com/nbluis/random-octodex",
   "license": "MIT",
   "dependencies": {
   	"express": "3.x",
   	"octodex": "0.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nbluis/random-octodex.git"
+  },
+  "keywords": [
+    "github",
+    "random",
+    "images",
+    "octodex",
+    "cats"
+  ]
 }
