@@ -11,5 +11,5 @@ app.get('/random', function(req, res) {
     res.writeHead(302, {'Location' : url});
     res.end();
 
-  });
+  }, true);
 }).listen(Number(process.env.PORT || 5000));
