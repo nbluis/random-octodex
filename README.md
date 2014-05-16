@@ -5,7 +5,7 @@ A simple node project to randomize display of the github octodexes.
 Just create a image tag with the main url `<img src="http://random-octodex.herokuapp.com/random"/>`
 
 ##Sample
-![Random Octodex](http://random-octodex.herokuapp.com/random)
+![Random Octodex](http://random-octodex.herokuapp.com/random?1)
 
 ## Running locally
 
