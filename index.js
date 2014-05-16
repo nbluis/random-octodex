@@ -1,24 +1,52 @@
 var express = require('express'),
     cat = require('octodex'),
+    url = require('url'),
+    https = require('https'),
     app = express();
 
-app.get('/random', function(req, res) {
-  cat.img(function(err, url) {
+var setCacheExpiration = function(res) {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+};
+
+var RequestHandler = function (req, res, callback) {
+  cat.img(function(err, imageUrl) {
     if (err) {
       res.end();
       return;
     }
+    setCacheExpiration(res);
+    callback(imageUrl);
+  }, true);
+};
 
-    var requestUrl = url.replace('http://', 'https://') + (url.indexOf('?') > 0 ? '&' : '?') + Math.random();
+var LocationRedirectHandler = function(req, res) {
+  new RequestHandler(req, res, function(imageUrl) {
+    var requestUrl = imageUrl.replace('http://', 'https://') + (imageUrl.indexOf('?') > 0 ? '&' : '?') + Math.random();
+    res.writeHead(302, {'Location' : requestUrl});
+    res.end();
+  });
+};
 
-    res.writeHead(302, {
-      'Cache-Control' : 'no-cache, no-store, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0',
-      'Location' : requestUrl
+var ImageProxyHandler = function(req, res) {
+  new RequestHandler(req, res, function(imageUrl) {
+    var parsedUrl = url.parse(imageUrl);
+    parsedUrl.protocol = 'https:';
+
+    var imageRequest = https.get(parsedUrl, function(imageResponse) {
+      imageResponse.on('data', function (chunk) {
+        res.write(chunk);
+      });
+      imageResponse.on('end', function () {
+        res.end();
+      });
     });
 
-    res.end();
+    imageRequest.end();
+  });
+};
 
-  }, true);
-}).listen(Number(process.env.PORT || 5000));
+app.get('/random', ImageProxyHandler);
+app.get('/randomLocation', LocationRedirectHandler);
+app.listen(Number(process.env.PORT || 5000));
