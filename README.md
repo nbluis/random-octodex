@@ -7,7 +7,7 @@ Just create a image tag with the main url `<img src="http://random-octodex.herok
 Also you can use https `<img src="https://random-octodex.herokuapp.com/random"/>`.
 
 ##Sample
-![Random Octodex](https://random-octodex.herokuapp.com/random)
+[![Random Octodex Site](https://random-octodex.herokuapp.com/randomLocation)](https://random-octodex.herokuapp.com/random)
 
 ## Running locally
 
