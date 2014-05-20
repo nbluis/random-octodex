@@ -35,12 +35,18 @@ var ImageProxyHandler = function(req, res) {
     parsedUrl.protocol = 'https:';
 
     var imageRequest = https.get(parsedUrl, function(imageResponse) {
+
+      res.setHeader('Content-Length', imageResponse.headers['content-length']);
+      res.setHeader('Content-Type', imageResponse.headers['content-type']);
+
       imageResponse.on('data', function (chunk) {
         res.write(chunk);
       });
+
       imageResponse.on('end', function () {
         res.end();
       });
+
     });
 
     imageRequest.end();
