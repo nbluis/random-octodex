@@ -1,4 +1,3 @@
-console.log(process.env.NEW_RELIC_APP_NAME);
 
 /**
  * This file includes all of the configuration variables used by the Node.js
