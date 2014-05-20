@@ -1,3 +1,5 @@
+console.log(process.env.NEW_RELIC_APP_NAME);
+
 /**
  * This file includes all of the configuration variables used by the Node.js
  * module. If there's a configurable element of the module and it's not
