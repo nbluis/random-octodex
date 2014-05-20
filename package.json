@@ -8,7 +8,8 @@
   "license": "MIT",
   "dependencies": {
   	"express": "3.x",
-  	"octodex": "0.3.0"
+  	"octodex": "0.3.0",
+    "newrelic": "1.5.x"
   },
   "repository": {
     "type": "git",

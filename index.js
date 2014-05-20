@@ -2,6 +2,7 @@ var express = require('express'),
     cat = require('octodex'),
     url = require('url'),
     https = require('https'),
+    newrelic = require('newrelic'),
     app = express();
 
 var setCacheExpiration = function(res) {
